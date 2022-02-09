@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>signage</title>
+        <meta charset="UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.6/dayjs.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+        <style>
+            .split{
+                display: table;
+                width: 100%;    
+            }
+            .split-item{
+                display: table-cell;
+                padding: 80px;
+                width: 70%;
+            }
+            .split-left{
+                background: rgb(255, 255, 255);
+                color: rgb(12, 12, 12);
+                position: relative;
+            }
+            .split-left__inner{
+                height: 120%;
+                position: fixed;
+                width: 50%;
+            }
+            .split-right__inner{
+                height: 8000xp;
+            }
+
+            body{
+                text-align: center;
+                font-family: 'Roboto', sans-serif;
+            /* ▼ ここでテキストの色を変更 ▼ */
+                color: rgb(0, 0, 0);
+            /* ▲ ここでテキストの色を変更 ▲ */
+            }
+
+            .nowtime{
+                margin-top: 15px;
+                margin-left: 10px;
+                width:500px;
+                padding : 5px 0px 0px 0px;
+                border-radius: 10px 10px 10px 10px;
+                /* ▼ ここで背景の色を変更 ▼ */
+                background: rgb(0, 0, 0);
+                color: rgb(255, 255, 255);
+                /* ▲ ここで背景の色を変更 ▲ */
+            }
+
+            #time{
+                display: inline;
+                line-height: 1em;/* 行間 */
+                letter-spacing: 3px;/* 字間 */
+                font-size: 100px;
+            }
+
+            #colon{
+                vertical-align: 7%;
+            }
+
+
+            #live{
+                display: inline;
+                letter-spacing: 5px;/* 字間 */
+                font-size: 27px;
+            }
+
+            #icon{
+                display: inline;
+                position: relative;
+                top: 5%;
+                left: -3px;
+                }
+
+            #bolt{
+                height: 27px;
+                animation: icon 5s linear infinite;
+                fill: currentColor;
+                }
+
+            @keyframes icon {
+            0%   { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+                }
+
+            #youtube{
+                margin-top: 15px;
+                width: 115%;
+                aspect-ratio: 16 / 9;
+            }
+            #youtube iframe {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="split">
+            <div class="split-item split-left">
+                <div class="split-left__inner">
+                    <div>
+                        <div class="nowtime">
+    
+                            <!-- ここから時刻 -->
+                            <p id="time"/>
+                              <script language="JavaScript">
+                              const day = function() {
+                                const dt = dayjs(new Date());
+                                const element = document.getElementById("time");
+                                  element.innerHTML = `${dt.format('HH')}<span id="colon">:</span>${dt.format('mm')}`;
+                              };
+                              setInterval(day, 1000);
+                              </script>
+                            <!-- ここまで時刻 -->
+                            
+                              <p id="icon"/>
+                            <svg id="bolt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 30"><polygon id="bolt-2" data-name="bolt" points="12.4 0 1 18 9.2 18 7.617 30 19 12 10.8 12 12.4 0"/></svg>
+                            <p id="live">LIVE</p>
+                            
+                        </div>
+                        <div id="youtube">
+                            <iframe width="1120" height="630" src="https://www.youtube.com/embed/ydYDqZQpim8?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                    </div>
+                </div><!--split-left__inner-->
+            </div><!--split-item split-left-->
+            <div class="split-item split-right">
+                <div class="split-right__inner">
+                    <h1>浜松市のお天気</h1>
+                    <div id="weathermap">
+                        <img width="445" height="auto" src="https://imageflux.tenki.jp/large/static-images/radar/2022/02/09/22/05/00/pref-25-large.jpg">
+                    </div>
+                    <div id="weatherforcast">
+                        <style>.max_temp{display:inline-block !important}.min_temp{display:inline-block !important}.temp{display:block !important}.rain_s{display:block !important}.pop-rain{undefined}.speed-wind{undefined}.deg-wind{undefined}.w_snow{undefined}.w_bg{background:linear-gradient(to right,#5c6bc0, #fff)}</style><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css"><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons-wind.css"><link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script type="text/javascript">weather_value=7;lat = 34.710808;lon =137.726303;inputText1 = "静岡県浜松市中区";search_add = "静岡県浜松市中区";</script><script src="https://sitecreation.co.jp/wp-content/themes/emanon-premium-child/tpl/weather.js"></script><link id="PageStyleSheet" rel="stylesheet" href="https://sitecreation.co.jp/wp-content/themes/emanon-premium-child/tpl/style.css"><div id="weather-wrapper"><div id="weather1"></div><div id="weather2"></div>
+                    </div>
+                </div><!--split-right__inner-->
+            </div><!--split-item split-right-->
+        </div><!--split-->
+    </body>
+</html>
