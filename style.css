@@ -69,6 +69,13 @@ body{
     height: 100%;
 }
 
+.youtube-row {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-top: 15px;
+}
+
 .container {
     display: grid;
     /* grid-template-columns: 1fr ; */

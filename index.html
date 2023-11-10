@@ -35,9 +35,49 @@
             </div>
             <div class="grid-item">
                 <div id="youtube">
-                    <iframe width="600" height="300" src="https://www.youtube.com/embed/lsxYH2XQQCg?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="youtube-embed" width="600" height="300" src="https://www.youtube.com/embed/lsxYH2XQQCg?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div class="grid-item">
+                    <div class="youtube-row">
+                        <label for="youtube-url-input">Enter URL : </label>
+                        <input id="youtube-url-input" name="youtube-url-input" type="url" maxlength="512">
+                        <input neme="youtube-url-go-button" type="button" value="GO" onclick="onYoutubeGoButtonClicked()">
+
+                        <script language="JavaScript">
+                            function onYoutubeGoButtonClicked() {
+                                const urlElement = document.getElementById("youtube-url-input")
+                                const urlString = urlElement.value
+                                console.log("input text: ", urlString)
+
+                                const convertedUrlString = converYoutubeUrl(urlString)
+                                console.log("url: ", convertedUrlString)
+
+                                const youtubeElement = document.getElementById("youtube-embed")
+                                youtubeElement.src = convertedUrlString
+                            }
+
+                            function converYoutubeUrl(urlString) {
+                                var url = new URL(urlString)
+                                url.searchParams.append("contorls", "0")
+                                url.searchParams.append("autoplay", "1")
+                                url.searchParams.append("mute", "1")
+
+                                const videoId = url.searchParams.get("v")
+                                url.searchParams.delete("v")
+
+                                var pathList = url.pathname.split("/")
+                                const index = pathList.indexOf("watch")
+                                if (index >= 0) { pathList[index] = "embed"}
+                                pathList.push(videoId)
+                                url.pathname = pathList.join("/")
+                                
+                                return url.toString();
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
-    </html>
+</html>
