@@ -43,8 +43,16 @@
                         <label for="youtube-url-input">Enter URL : </label>
                         <input id="youtube-url-input" name="youtube-url-input" type="url" maxlength="512">
                         <input neme="youtube-url-go-button" type="button" value="GO" onclick="onYoutubeGoButtonClicked()">
-                        
+
                         <script src="./youtubeButtonHandler.js"></script>
+
+                        <script language="JavaScript">
+                            let currentUrl = new URL(window.location.href);
+                            const videoId = currentUrl.searchParams.get('v')
+                            if (videoId) {
+                                embedYoutubeUrl(createEmbedYoutubeUrl(videoId))
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
