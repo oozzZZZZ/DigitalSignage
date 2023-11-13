@@ -35,9 +35,27 @@
             </div>
             <div class="grid-item">
                 <div id="youtube">
-                    <iframe width="600" height="300" src="https://www.youtube.com/embed/lsxYH2XQQCg?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="youtube-embed" width="600" height="300" src="https://www.youtube.com/embed/lsxYH2XQQCg?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div class="grid-item">
+                    <div class="youtube-row">
+                        <label for="youtube-url-input">Enter URL : </label>
+                        <input id="youtube-url-input" name="youtube-url-input" type="url" maxlength="512">
+                        <input neme="youtube-url-go-button" type="button" value="GO" onclick="onYoutubeGoButtonClicked()">
+
+                        <script src="./youtube.js"></script>
+
+                        <script language="JavaScript">
+                            let currentUrl = new URL(window.location.href);
+                            const videoId = currentUrl.searchParams.get('v')
+                            if (videoId) {
+                                embedYoutubeUrl(createEmbedYoutubeUrl(videoId))
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
-    </html>
+</html>
